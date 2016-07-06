@@ -1,5 +1,4 @@
 //myScene.js
-
 var gameScene = cc.Scene.extend({
     onEnter: function() {
         this._super();
@@ -14,21 +13,11 @@ var game = cc.Layer.extend({
 
         var size = cc.director.getWinSize();
 
-
-                for (var i = 0; i < 4; i++) {
-                    for (var j = 0; j < 4; j++) {
-
-                        var sprite = new cc.Sprite(res.cover_png);
-                        sprite.attr({
-                            x: size.height *0.1 + 60 * j,
-                            y: size.height *0.2 + 65 * i,
-                            scale: 1.0,
-                            rotation: 0
-                        });
-                        this.addChild(sprite, 0);
-                        //this.dropSpriteArray.push(this.sprite);
-                        //this.addChild(this.dropSpriteArray[i], 0);
-                }
-          }
-    },
+        for (i = 0; i < 16; i++) {
+            var tile = cc.Sprite.create(res.cover_png);
+            this.addChild(tile, 0);
+            //タイルを格子状に配置する計算式
+            tile.setPosition(49 + i % 4 * 74, 400 - Math.floor(i / 4) * 74);
+        }
+    }
 });
